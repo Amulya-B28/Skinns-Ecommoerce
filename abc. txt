@@ -1,0 +1,62 @@
+from flask import Flask, jsonify, request
+import boto3
+import serverless_wsgi  # For Lambda support
+from boto3.dynamodb.conditions import Attr 
+
+app = Flask(__name__)
+
+# DynamoDB setup
+dynamodb = boto3.resource('dynamodb', region_name='eu-north-1')
+items_table = dynamodb.Table('Items')
+cart_table = dynamodb.Table('Carts')
+
+# Routes
+@app.route('/get_products', methods=['GET'])
+def get_products():
+    # Fetch all items from DynamoDB
+    response = items_table.scan()
+    return jsonify(response['Items'])
+
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    data = request.get_json()
+
+    # Prepare the cart item
+    item = {
+        'user_email': data['user_email'],
+        'item_id': data['item_id'],
+        'quantity': data['quantity']
+    }
+
+    # Insert the item into the cart table
+    cart_table.put_item(Item=item)
+    return jsonify({"message": "Item added to cart!"}), 200
+
+@app.route('/get_cart/<user_email>', methods=['GET'])
+def get_cart(user_email):
+    response = cart_table.scan(
+        FilterExpression=Attr('user_email').eq(user_email)
+    )
+    return jsonify(response['Items']), 200
+
+@app.route('/checkout', methods=['POST'])
+def checkout():
+    data = request.get_json()
+    user_email = data['user_email']
+    
+    # Fetch cart items
+    response = cart_table.scan(
+        FilterExpression=Attr('user_email').eq(user_email)
+    )
+    items = response.get('Items', [])
+    
+    # Here you can process the checkout: maybe clear cart, create order, etc.
+
+    return jsonify({"message": "Checkout successful!", "items_checked_out": items}), 200
+
+# Lambda handler
+def lambda_handler(event, context):
+    return serverless_wsgi.handle_request(app, event, context)
+
+if __name__ == '__main__':
+    app.run(debug=True) .....this is original one......make changes oly where necessary

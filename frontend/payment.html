@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment | Skinns Clothing Store</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand">Skinns</div>
+    <ul class="navbar-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="#">Login</a></li>
+      <li><a href="#">Signup</a></li>
+    </ul>
+  </nav>
+
+  <section class="payment-section">
+    <h2 class="section-title">Payment Page</h2>
+    <p>Proceed with payment for your items.</p>
+    <button class="pay-now-btn">Pay Now</button>
+  </section>
+
+  <script>
+    document.querySelector('.pay-now-btn').addEventListener('click', function() {
+      alert("🛒 Payment successful!");
+      window.location.href = 'index.html';  // Redirect to home page after payment
+    });
+  </script>
+</body>
+</html>
