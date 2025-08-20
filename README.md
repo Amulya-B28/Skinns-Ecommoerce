@@ -1,51 +1,52 @@
-# 🛍️ Skinns - Clothing E-Commerce Platform
+# 🛍️ Skinns - Cloud-Based Clothing E-Commerce Platform
 
-Skinns is a **full-stack web application** developed as a prototype for an online clothing store.  
-The project demonstrates how **frontend technologies** (HTML, CSS, JavaScript) can be seamlessly integrated with a **backend service** (Flask) and a **cloud-hosted NoSQL database** (AWS DynamoDB).  
-It also leverages **serverless deployment** using AWS Lambda via Zappa, reflecting a modern, scalable architecture often adopted in industry.
+**Skinns** is a **cloud-native full-stack web application** developed as a prototype for an online clothing store.  
+The project highlights how **frontend technologies** (HTML, CSS, JavaScript) integrate with a **Flask backend**, and leverages **AWS Cloud Services** (DynamoDB, Lambda, S3) for deployment and storage.  
+The application is deployed using **Zappa** on **AWS Lambda**, making it **serverless, scalable, and cost-efficient** — reflecting modern architectures used in real-world e-commerce systems.  
 
 ---
 
 ## 🎯 Project Objectives
-- To simulate a real-world **e-commerce workflow** including browsing products, adding to cart, and checkout.  
-- To demonstrate integration of **frontend UI** with **backend APIs** and **cloud databases**.  
-- To explore **serverless deployment** for cost-effective, scalable web applications.  
+- To simulate a realistic **e-commerce workflow**: browsing products, adding to cart, and checkout.  
+- To showcase integration between **frontend UI** and **backend APIs** in a cloud ecosystem.  
+- To leverage **AWS cloud services** for scalability, persistence, and serverless deployment.  
+- To build a foundation for **enterprise-ready, cloud-hosted retail platforms**.  
 
 ---
 
 ## 🏗️ System Architecture
-The application is structured as follows:
+This project adopts a **multi-layered, cloud-driven architecture**:
 
-- **Frontend Layer**  
-  Designed using **HTML, CSS, and JavaScript**, providing a responsive interface.  
-  - `index.html` displays product listings dynamically.  
-  - `cart.html` manages the user’s shopping cart.  
-  - `payment.html` simulates the payment workflow.  
-  - `main.js` handles client-side logic and API calls.  
-  - `styles.css` provides consistent styling across pages.  
+- **Frontend Layer** (HTML, CSS, JavaScript)  
+  - `index.html` → Displays products dynamically.  
+  - `cart.html` → Manages the user’s shopping cart.  
+  - `payment.html` → Simulates the payment workflow.  
+  - `main.js` → Client-side logic and API calls to the backend.  
+  - `styles.css` → Styling for a responsive user experience.  
 
-- **Backend Layer**  
-  Implemented using **Flask**, offering RESTful endpoints that interact with the database.  
-  - Provides APIs for fetching products, adding to cart, retrieving cart items, and handling checkout.  
-  - Includes DynamoDB integration through the **boto3** SDK.  
+- **Backend Layer** (Flask + AWS Lambda)  
+  - RESTful APIs for fetching products, adding to cart, retrieving cart items, and checkout.  
+  - Wrapped with **serverless-wsgi** to run natively on AWS Lambda.  
+  - Dynamically scalable thanks to AWS serverless compute.  
 
-- **Database Layer**  
-  Utilizes **AWS DynamoDB** to manage two primary datasets:  
-  - `Items` → product information (title, price, category, etc.)  
-  - `Carts` → user-specific cart details.  
+- **Database Layer** (AWS DynamoDB)  
+  - `Items` table → Stores product metadata (title, price, category, etc.).  
+  - `Carts` table → Manages user-specific shopping cart details.  
+  - **NoSQL schema flexibility** supports dynamic growth and varied data models.  
 
-- **Deployment Layer**  
-  Uses **Zappa** to package and deploy the Flask app onto **AWS Lambda** in a serverless manner.  
-  This ensures scalability, high availability, and reduced operational costs.  
+- **Deployment Layer** (AWS Zappa + S3)  
+  - **Zappa** packages and deploys the Flask app to AWS Lambda.  
+  - **S3** bucket handles deployment artifacts and asset hosting.  
+  - **Serverless design** ensures cost-effectiveness and automatic scaling.  
 
 ---
 
 ## ⚙️ Key Features
-- **Product Catalog** – Browse a collection of items with details such as price, category, and gender.  
-- **Cart Management** – Add items to the cart and view or update cart contents.  
-- **Checkout Simulation** – Proceed to a payment page with simulated confirmation.  
-- **Cloud-Native Backend** – Persistent data storage using DynamoDB.  
-- **Serverless Hosting** – Deployment on AWS Lambda with Zappa.  
+- **Cloud-Hosted Product Catalog** – Items retrieved directly from DynamoDB.  
+- **Persistent Cart Management** – Cart data stored in DynamoDB per user.  
+- **Checkout Simulation** – Simulates order processing flow.  
+- **AWS-Backed Backend** – Powered by Lambda + DynamoDB for reliability.  
+- **Fully Serverless Deployment** – Leveraging Zappa on AWS Lambda.  
 
 ---
 
