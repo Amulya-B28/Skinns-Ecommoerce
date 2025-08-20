@@ -48,6 +48,3 @@ This project adopts a **multi-layered, cloud-driven architecture**:
 - **AWS-Backed Backend** – Powered by Lambda + DynamoDB for reliability.  
 - **Fully Serverless Deployment** – Leveraging Zappa on AWS Lambda.  
 
----
-
-## 📂 Project Structure
